@@ -8,29 +8,34 @@ class Navigation extends Component {
     this.changeRecipe = this.changeRecipe.bind(this);
   }
 
-  changeRecipe(e) {
-    const buttonId = e.target.id;
-    const recipeId = buttonId.split('-')[0];
-    this.props.recipeToSelect(recipeId);
+  changeRecipe(id) {
+    this.props.recipeToSelect(id);
   }
 
   render() {
     return (
       <div className="Navigation">
-        <ul>
-          {
-            this.props.recipes.map(recipe => (
-              <button
-                type="button"
-                id={`${recipe.id}-button`}
-                key={recipe.id}
-                onClick={this.changeRecipe}
-              >
-                {recipe.title}
-              </button>
-            ))
+        <nav className="Navigation__nav">
+          <ul className="Navigation__list">
+            {
+             this.props.recipes.map(recipe => (
+               <li>
+                 <button
+                   type="button"
+                   id={`${recipe.id}-button`}
+                   key={recipe.id}
+                   onClick={() => this.changeRecipe(recipe.id)}
+                   className={`Navigation__button ${recipe.id === this.props.activeRecipe
+                     ? 'Navigation__button--active' : ''}`}
+                 >
+                   {recipe.title}
+                 </button>
+               </li>
+             ))
           }
-        </ul>
+          </ul>
+        </nav>
+
       </div>
     );
   }
@@ -38,8 +43,8 @@ class Navigation extends Component {
 
 Navigation.propTypes = {
   recipes: PropTypes.array.isRequired,
-  recipeToSelect: PropTypes.func,
-
+  recipeToSelect: PropTypes.func.isRequired,
+  activeRecipe: PropTypes.string.isRequired,
 };
 
 export default Navigation;
