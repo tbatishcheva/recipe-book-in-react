@@ -43,7 +43,6 @@ class App extends Component {
   componentDidMount() {
     const recipeToShow = this.state.recipes[1].id || null;
     this.setState({
-      // ...this.state,
       selectedRecipe: recipeToShow,
     });
   }
@@ -51,7 +50,6 @@ class App extends Component {
   selectNewRecipe(recipeId) {
     if (recipeId) {
       this.setState({
-        // ...this.state,
         selectedRecipe: recipeId,
       });
     }

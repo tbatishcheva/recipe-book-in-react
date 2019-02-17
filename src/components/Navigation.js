@@ -22,7 +22,6 @@ class Navigation extends Component {
                <li>
                  <button
                    type="button"
-                   id={`${recipe.id}-button`}
                    key={recipe.id}
                    onClick={() => this.changeRecipe(recipe.id)}
                    className={`Navigation__button ${recipe.id === this.props.activeRecipe
@@ -35,7 +34,6 @@ class Navigation extends Component {
           }
           </ul>
         </nav>
-
       </div>
     );
   }
